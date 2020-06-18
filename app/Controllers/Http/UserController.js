@@ -10,9 +10,10 @@ class UserController {
     response
   }) {
     const {
+      isAdmin,
       email,
       pass
-    } = request.only(['email', 'pass'])
+    } = request.only(['email', 'pass', 'isAdmin'])
     const hasUser = await _user.query().where('email', email).getCount()
 
     if (hasUser > 0) {
@@ -20,12 +21,17 @@ class UserController {
         error: "Usuário já cadastrado"
       })
     } else {
-      const newUser = await _user.create({email: email, password: pass})
+      const newUser = await _user.create({
+        email: email,
+        password: pass,
+        admin: isAdmin
+      })
       const token = await auth.generate(newUser)
 
       return {
-        status: "ok",
-        token: token
+        email: email,
+        isAdmin: isAdmin,        
+        token: token.token,
       }
     }
   }
@@ -40,9 +46,12 @@ class UserController {
     } = request.only(['email', 'pass'])
 
     const status = await auth.attempt(email, pass)
+    const user = await _user.findBy('email', email)
 
     return {
-      status: status
+      email: email,
+      isAdmin: user.admin,
+      token: status.token
     }
   }
 }
