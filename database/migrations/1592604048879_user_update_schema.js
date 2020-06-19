@@ -7,7 +7,7 @@ class UserUpdateSchema extends Schema {
   up() {
     this.table('users', (table) => {
       table.dropColumn('email')
-      table.string('rgpm', 5).notNullable().default("").unique()
+      table.string('rgpm', 5).nullable()
       table.string('nome', 64).notNullable().default('')      
     })
   }
