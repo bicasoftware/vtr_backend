@@ -25,3 +25,8 @@ Route.group(() => {
   Route.post('', 'CarroController.create')
   Route.get('', 'CarroController.list')
 }).prefix('carros').middleware(['auth'])
+
+Route.group(() => {
+  Route.get('/carros', 'VeiculoController.listCarros')
+  Route.get('/motos', 'VeiculoController.listMotos')
+}).prefix("veiculos").middleware(['auth'])

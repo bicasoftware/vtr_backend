@@ -11,26 +11,29 @@ class UserController {
   }) {
     const {
       isAdmin,
-      email,
+      nome,
+      rgpm,
       pass
-    } = request.only(['email', 'pass', 'isAdmin'])
-    const hasUser = await _user.query().where('email', email).getCount()
+    } = request.only(['nome', 'rgpm', 'pass', 'isAdmin'])
+    const hasUser = await _user.query().where('rgpm', rgpm).getCount()
 
     if (hasUser > 0) {
       response.status(400).send({
-        error: "Usuário já cadastrado"
+        error: "RGPM já cadastrado!"
       })
     } else {
       const newUser = await _user.create({
-        email: email,
+        nome: nome,
+        rgpm: rgpm,
         password: pass,
         admin: isAdmin
       })
       const token = await auth.generate(newUser)
 
       return {
-        email: email,
-        isAdmin: isAdmin,        
+        nome: nome,
+        rgpm: rgpm,
+        isAdmin: isAdmin,
         token: token.token,
       }
     }
@@ -41,15 +44,16 @@ class UserController {
     request
   }) {
     const {
-      email,
+      rgpm,
       pass
-    } = request.only(['email', 'pass'])
+    } = request.only(['rgpm', 'pass'])
 
-    const status = await auth.attempt(email, pass)
-    const user = await _user.findBy('email', email)
+    const status = await auth.attempt(rgpm, pass)
+    const user = await _user.findBy(rgpm, 'rgpm')
 
     return {
-      email: email,
+      rgpm: rgpm,
+      nome: user,
       isAdmin: user.admin,
       token: status.token
     }

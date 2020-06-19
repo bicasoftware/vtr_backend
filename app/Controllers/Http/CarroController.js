@@ -4,7 +4,6 @@ const _lataria = use('App/Models/Lataria')
 const _motor = use('App/Models/Motor')
 const _arrefecimento = use('App/Models/Arrefecimento')
 const _eletrica = use('App/Models/Eletrica')
-const _farol = use('App/Models/Farol')
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
