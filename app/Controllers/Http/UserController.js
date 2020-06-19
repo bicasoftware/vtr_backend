@@ -53,7 +53,7 @@ class UserController {
 
     return {
       rgpm: rgpm,
-      nome: user,
+      nome: user.nome,
       isAdmin: user.admin,
       token: status.token
     }
