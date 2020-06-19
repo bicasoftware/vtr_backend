@@ -49,7 +49,7 @@ class UserController {
     } = request.only(['rgpm', 'pass'])
 
     const status = await auth.attempt(rgpm, pass)
-    const user = await _user.findBy(rgpm, 'rgpm')
+    const user = await _user.findBy('rgpm', rgpm)
 
     return {
       rgpm: rgpm,
