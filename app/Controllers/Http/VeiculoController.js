@@ -3,7 +3,7 @@
 class VeiculoController {
   async listCarros() {
     return {
-      "Carros": [{
+      "veiculo": [{
           "Nº": "1",
           "OPM": "7º BPM",
           "PLACA": "QEV-3403",
@@ -108,7 +108,7 @@ class VeiculoController {
 
   async listMotos() {
     return {
-      "Motos": [{
+      "veiculo": [{
           "Nº": "10",
           "OPM": "7º BPM",
           "PLACA": "QEU-5504",
