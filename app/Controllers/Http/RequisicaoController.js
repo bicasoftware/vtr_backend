@@ -8,7 +8,7 @@ class RequisicaoController {
     request
   }) {
     const data = request.all()
-    const newReq = await _requisicao.create(...data)
+    const newReq = await _requisicao.create(data)
     const {
       created_at,
       updated_at,
