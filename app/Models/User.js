@@ -7,6 +7,10 @@ const Model = use('Model')
 const Hash = use('Hash')
 
 class User extends Model {
+  requisicoes() {
+    return this.hasMany('App/Models/Requisicao')
+  }
+
   static boot () {
     super.boot()
 
