@@ -26,7 +26,7 @@ class RequisicaoSchema extends Schema {
       table.bool("lataria_trincado").notNullable().default(false)
       table.bool("lataria_perfurado").notNullable().default(false)
       table.bool("lataria_quebrado").notNullable().default(false)
-      
+
       table.integer("nivel_oleo").notNullable().default(0)
       table.integer("qualidade_oleo").notNullable().default(0)
       table.bool("vazamento_oleo").notNullable().default(false)
@@ -36,29 +36,26 @@ class RequisicaoSchema extends Schema {
       table.string("local_vazamento_agua").nullable()
       table.bool("luz_acesa").notNullable().default(false)
       table.string("luz_acesa_descricao").nullable()
-      
+
       table.bool("alteracao_farois_dianteiros").notNullable().default(false)
       table.bool("alteracao_farois_trazeiros").notNullable().default(false)
-      
-      table.integer("dianteiro_direito_minima").notNullable().default(false)
-      table.integer("dianteiro_direito_media").notNullable().default(false)
-      table.integer("dianteiro_direito_maxima").notNullable().default(false)
-      table.integer("dianteiro_direito_pisca").notNullable().default(false)
 
-      table.integer("dianteiro_esquerdo_minima").notNullable().default(false)
-      table.integer("dianteiro_esquerdo_media").notNullable().default(false)
-      table.integer("dianteiro_esquerdo_maxima").notNullable().default(false)
-      table.integer("dianteiro_esquerdo_pisca").notNullable().default(false)
-
-      table.integer("trazeiro_direito_minima").notNullable().default(false)
-      table.integer("trazeiro_direito_media").notNullable().default(false)
-      table.integer("trazeiro_direito_maxima").notNullable().default(false)
-      table.integer("trazeiro_direito_pisca").notNullable().default(false)
-
-      table.integer("trazeiro_esquerdo_minima").notNullable().default(false)
-      table.integer("trazeiro_esquerdo_media").notNullable().default(false)
-      table.integer("trazeiro_esquerdo_maxima").notNullable().default(false)
-      table.integer("trazeiro_esquerdo_pisca").notNullable().default(false)
+      table.bool("dianteiro_direito_minima").notNullable().default(false)
+      table.bool("dianteiro_direito_media").notNullable().default(false)
+      table.bool("dianteiro_direito_maxima").notNullable().default(false)
+      table.bool("dianteiro_direito_pisca").notNullable().default(false)
+      table.bool("dianteiro_esquerdo_minima").notNullable().default(false)
+      table.bool("dianteiro_esquerdo_media").notNullable().default(false)
+      table.bool("dianteiro_esquerdo_maxima").notNullable().default(false)
+      table.bool("dianteiro_esquerdo_pisca").notNullable().default(false)
+      table.bool("trazeiro_direito_minima").notNullable().default(false)
+      table.bool("trazeiro_direito_media").notNullable().default(false)
+      table.bool("trazeiro_direito_maxima").notNullable().default(false)
+      table.bool("trazeiro_direito_pisca").notNullable().default(false)
+      table.bool("trazeiro_esquerdo_minima").notNullable().default(false)
+      table.bool("trazeiro_esquerdo_media").notNullable().default(false)
+      table.bool("trazeiro_esquerdo_maxima").notNullable().default(false)
+      table.bool("trazeiro_esquerdo_pisca").notNullable().default(false)
 
 
       table.timestamps()
