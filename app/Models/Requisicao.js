@@ -9,7 +9,7 @@ class Requisicao extends Model {
   }
 
   carro() {
-    return this.hasOne('App/Models/Veiculos')
+    return this.hasOne('App/Models/Veiculo')
   }
 }
 
