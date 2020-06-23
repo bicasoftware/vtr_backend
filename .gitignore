@@ -12,3 +12,4 @@ database/*.sqlite
 app/Controllers/Http/TestisController.js
 # Arquivos de diretorio criados pelo KDE
 *.directory
+.env_2

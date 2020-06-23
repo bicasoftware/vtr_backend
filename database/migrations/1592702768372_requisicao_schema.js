@@ -13,11 +13,7 @@ class RequisicaoSchema extends Schema {
         .references('id')
         .inTable('users')
 
-      table.integer('carro_id')
-        .unsigned()
-        .references('id')
-        .inTable('veiculos')
-
+      table.integer('veiculo_id').notNullable()
       table.integer('status').notNullable().default(0)
 
       table.string("km_inicial").nullable()
