@@ -6,7 +6,7 @@ class RequisicaoController {
 
   async create({ params, request, auth }) {
     const data = request.all()
-    const newReq = await _requisicao.create({ ...data, user_id: auth.user.id, carro_id: params.carro_id })
+    const newReq = await _requisicao.create({ ...data, user_id: auth.user.id, veiculo_id: params.carro_id })
     const { created_at, updated_at, id } = newReq
     return {
       created_at: created_at,
