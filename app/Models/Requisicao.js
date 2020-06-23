@@ -8,7 +8,7 @@ class Requisicao extends Model {
     return this.belongsTo('App/Models/User')
   }
 
-  carro() {
+  veiculo() {
     return this.hasOne('App/Models/Veiculo')
   }
 }
