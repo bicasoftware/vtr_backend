@@ -9,8 +9,8 @@ Route.group(() => {
 }).prefix('auth')
 
 Route.group(() => {
-  Route.post('/:tipo', 'Veiculos.create')
-  Route.delete('/:id', 'Veiculos.delete')
+  Route.post('/:tipo', 'VeiculoController.create')
+  Route.delete('/:id', 'VeiculoController.delete')
   Route.get('/:tipo/:locada', 'VeiculoController.listVeiculos')
 }).prefix("veiculos").middleware(['auth'])
 
@@ -22,5 +22,3 @@ Route.group(() => {
   Route.put('/finish/:id', 'RequisicaoController.finish')
 
 }).prefix('requisicoes').middleware(['auth'])
-
-Route.post('/requisicoes', 'RequisicaoController.create').middleware(['auth'])
