@@ -9,13 +9,18 @@ Route.group(() => {
 }).prefix('auth')
 
 Route.group(() => {
-  Route.post('', 'CarroController.create')
-  Route.get('', 'CarroController.list')
-}).prefix('carros').middleware(['auth'])
+  Route.post('/:tipo', 'Veiculos.create')
+  Route.delete('/:id', 'Veiculos.delete')
+  Route.get('/:tipo/:locada', 'VeiculoController.listVeiculos')
+}).prefix("veiculos").middleware(['auth'])
 
 Route.group(() => {
-  Route.get('/carros', 'VeiculoController.listCarros')
-  Route.get('/motos', 'VeiculoController.listMotos')
-}).prefix("veiculos").middleware(['auth'])
+  Route.post('/:carro_id', 'RequisicaoController.create')
+  Route.get('', 'RequisicaoController.listAll')
+  Route.get('/:id', 'RequisicaoController.listOne')
+  Route.put('/cancel/:id', 'RequisicaoController.cancel')
+  Route.put('/finish/:id', 'RequisicaoController.finish')
+
+}).prefix('requisicoes').middleware(['auth'])
 
 Route.post('/requisicoes', 'RequisicaoController.create').middleware(['auth'])

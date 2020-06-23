@@ -7,6 +7,10 @@ class Requisicao extends Model {
   user() {
     return this.belongsTo('App/Models/User')
   }
+
+  carro() {
+    return this.hasOne('App/Models/Veiculos')
+  }
 }
 
 module.exports = Requisicao

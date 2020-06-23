@@ -10,30 +10,22 @@ class UserController {
     response
   }) {
     const {
-      isAdmin,
       nome,
       rgpm,
       pass
-    } = request.only(['nome', 'rgpm', 'pass', 'isAdmin'])
+    } = request.only(['nome', 'rgpm', 'pass'])
     const hasUser = await _user.query().where('rgpm', rgpm).getCount()
 
     if (hasUser > 0) {
-      response.status(400).send({
-        error: "RGPM já cadastrado!"
-      })
+      response.status(400).send({ error: "RGPM já cadastrado!" })
     } else {
-      const newUser = await _user.create({
-        nome: nome,
-        rgpm: rgpm,
-        password: pass,
-        admin: isAdmin
-      })
+      const newUser = await _user.create({ nome: nome, rgpm: rgpm, password: pass, admin: false })
       const token = await auth.generate(newUser)
 
       return {
         nome: nome,
         rgpm: rgpm,
-        isAdmin: isAdmin,
+        isAdmin: newUser.admin,
         token: token.token,
       }
     }
@@ -43,10 +35,7 @@ class UserController {
     auth,
     request
   }) {
-    const {
-      rgpm,
-      pass
-    } = request.only(['rgpm', 'pass'])
+    const { rgpm, pass } = request.only(['rgpm', 'pass'])
 
     const status = await auth.attempt(rgpm, pass)
     const user = await _user.findBy('rgpm', rgpm)

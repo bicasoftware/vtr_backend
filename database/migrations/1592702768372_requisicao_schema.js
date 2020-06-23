@@ -12,11 +12,14 @@ class RequisicaoSchema extends Schema {
         .unsigned()
         .references('id')
         .inTable('users')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE')
 
-      table.string("placa").nullable()
-      table.string("prefixo").nullable()
+      table.integer('carro_id')
+        .unsigned()
+        .references('id')
+        .inTable('veiculos')
+
+      table.integer(status).notNullable().default(0)
+
       table.string("km_inicial").nullable()
       table.string("km_termino").nullable()
 
