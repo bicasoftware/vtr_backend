@@ -12,6 +12,7 @@ Route.group(() => {
   Route.post('/:tipo', 'VeiculoController.create')
   Route.delete('/:id', 'VeiculoController.delete')
   Route.get('/:tipo/:locada', 'VeiculoController.listVeiculos')
+  Route.get('/counter', 'VeiculoController.counter')
 }).prefix("veiculos").middleware(['auth'])
 
 Route.group(() => {

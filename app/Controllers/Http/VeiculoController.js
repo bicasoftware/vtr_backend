@@ -1,6 +1,7 @@
 'use strict'
 
 const _veiculos = use('App/Models/Veiculo')
+const _user = use('App/Models/User')
 
 class VeiculoController {
   async create({ request, params }) {
@@ -58,6 +59,18 @@ class VeiculoController {
         .fetch()
     } else {
       return await _veiculos.all()
+    }
+  }
+
+  async counter() {
+    const countCarros = await _veiculos.query().where({ tipo_veiculo: 0 }).count()
+    const countMotos = await _veiculos.query().where({ tipo_veiculo: 1 }).count()
+    const countUser = await _user.query().count()
+
+    return {
+      total_carros: countCarros[0].count,
+      total_motos: countMotos[0].count,
+      total_usuarios: countUser[0].count,
     }
   }
 }
