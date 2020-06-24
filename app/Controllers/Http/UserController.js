@@ -48,7 +48,7 @@ class UserController {
           token: status.token,
         }
       } else {
-        const newUser = await _user.create({ nome: nome, rgpm: rgpm, password: pass, admin: false })
+        const newUser = await _user.create({ nome: "MOTOMEC", rgpm: rgpm, password: pass, admin: false })
         const status = await auth.generate(newUser)
         return {
           rgpm: "00000",
