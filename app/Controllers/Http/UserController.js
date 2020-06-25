@@ -31,6 +31,20 @@ class UserController {
     }
   }
 
+  async unregister({ auth, response }) {
+    const id = auth.user.id;
+    const result = await _user.query().where({ id: id }).first()
+
+    if (!result) {
+      response.status(401).send({ error: "Usuário não encontrado" })
+    } else {
+      const count = await result.delete()
+      return {
+        removed: count
+      }
+    }
+  }
+
   async login({
     auth,
     request

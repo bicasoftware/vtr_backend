@@ -7,12 +7,7 @@ class RequisicaoSchema extends Schema {
   up() {
     this.create('requisicaos', (table) => {
       table.increments()
-      table
-        .integer('user_id')
-        .unsigned()
-        .references('id')
-        .inTable('users')
-
+      table.integer('user_id').notNullable()
       table.integer('veiculo_id').notNullable()
       table.integer('status').notNullable().default(0)
 

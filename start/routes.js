@@ -6,6 +6,7 @@ const Route = use('Route')
 Route.group(() => {
   Route.post('register', 'UserController.register')
   Route.post('login', 'UserController.login')
+  Route.post('unregister', 'UserController.unregister')
 }).prefix('auth')
 
 Route.group(() => {
