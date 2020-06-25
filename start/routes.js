@@ -17,7 +17,8 @@ Route.group(() => {
 
 Route.group(() => {
   Route.post('/:carro_id', 'RequisicaoController.create')
-  Route.get('', 'RequisicaoController.listAll')
+  Route.get('', 'RequisicaoController.listAll')  
+  Route.get('/filter/:status', 'RequisicaoController.filterByStatus')  
   Route.get('/:id', 'RequisicaoController.listOne')
   Route.put('/cancel/:id', 'RequisicaoController.cancel')
   Route.put('/finish/:id', 'RequisicaoController.finish')

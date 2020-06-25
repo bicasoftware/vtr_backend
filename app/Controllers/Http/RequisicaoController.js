@@ -16,10 +16,10 @@ class RequisicaoController {
   }
 
   async listAll({ response, auth }) {
-    if (auth.user.admin == 0) {
-      return await _requisicao.all()
-    } else {
+    if (!auth.user.admin) {
       response.status(401).send({ error: "Usuário sem acesso" })
+    } else {
+      return await _requisicao.all()
     }
   }
 
@@ -41,7 +41,7 @@ class RequisicaoController {
   async updateStatus(id, admin, user_id, status) {
     let filter;
     if (admin == 0) {
-      filter = { id: params.id }
+      filter = { id: id }
     } else {
       filter = { id: id, user_id: user_id }
     }
@@ -53,6 +53,20 @@ class RequisicaoController {
       .update({ status: status })
 
     return { modified: count }
+  }
+
+  async filterByStatus({ auth, response, params }) {
+    if (!auth.user.admin) {
+      response.status(401).send({ error: "Usuário sem permissão" })
+    }
+
+    const requisicoes = await _requisicao
+      .query()
+      .where({ status: params.status })
+      .with('veiculo')
+      .fetch()
+
+    return requisicoes
   }
 }
 
