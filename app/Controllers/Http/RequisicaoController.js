@@ -19,7 +19,7 @@ class RequisicaoController {
     if (!auth.user.admin) {
       response.status(401).send({ error: "Usuário sem acesso" })
     } else {
-      return await _requisicao.all()
+      return await _requisicao.query().with('veiculo').fetch()
     }
   }
 
@@ -27,6 +27,7 @@ class RequisicaoController {
     return await _requisicao
       .query()
       .where({ user_id: auth.user.id, id: params.id })
+      .with('veiculo')
       .fetch()
   }
 
