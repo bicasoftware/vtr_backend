@@ -4,7 +4,7 @@ const _requisicao = use("App/Models/Requisicao")
 
 class RequisicaoController {
 
-  async create({ params, request, auth }) {
+  async create({ request, auth }) {
 
     const {
       status,
@@ -85,7 +85,7 @@ class RequisicaoController {
       trazeiro_esquerdo_pisca: trazeiro_esquerdo_pisca,
 
       user_id: auth.user.id,
-      veiculo_id: params.carro_id
+      veiculo_id: veiculo_id
     })
 
     const { created_at, updated_at, id } = newReq

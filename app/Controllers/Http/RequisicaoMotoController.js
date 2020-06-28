@@ -17,7 +17,8 @@ class RequisicaoMotoController {
       interna,
       pneus_dianteiro,
       pneus_trazeiro,
-      combustivel
+      combustivel,
+      veiculo_id
     } = request.all()
 
     const newReq = await _requisicao.create({
@@ -33,8 +34,8 @@ class RequisicaoMotoController {
       pneus_dianteiro: pneus_dianteiro,
       pneus_trazeiro: pneus_trazeiro,
       combustivel: combustivel,
+      veiculo_id: veiculo_id,
       user_id: auth.user.id,
-      veiculo_id: params.veiculo_id
     })
 
     const { created_at, updated_at, id } = newReq

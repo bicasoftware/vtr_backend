@@ -17,7 +17,7 @@ Route.group(() => {
 }).prefix("veiculos").middleware(['auth'])
 
 Route.group(() => {
-  Route.post('/:carro_id', 'RequisicaoController.create')
+  Route.post('', 'RequisicaoController.create')
   Route.get('', 'RequisicaoController.listAll')
   Route.get('/filter/:status', 'RequisicaoController.filterByStatus')
   Route.get('/:id', 'RequisicaoController.listOne')
@@ -26,7 +26,7 @@ Route.group(() => {
 }).prefix('requisicoes').middleware(['auth'])
 
 Route.group(() => {
-  Route.post('/:veiculo_id', 'RequisicaoMotoController.create')
+  Route.post('', 'RequisicaoMotoController.create')
   Route.get('', 'RequisicaoMotoController.listAll')
   Route.get('/filter/:status', 'RequisicaoMotoController.filterByStatus')
   Route.get('/:id', 'RequisicaoMotoController.listOne')
