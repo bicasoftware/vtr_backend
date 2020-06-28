@@ -7,6 +7,7 @@ class RequisicaoController {
   async create({ request, auth }) {
 
     const {
+      veiculo_id,
       status,
       km_inicial,
       km_termino,
