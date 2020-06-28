@@ -47,9 +47,14 @@ class RequisicaoMotoController {
     }
   }
 
-  async listAll({ response, auth }) {
+  async listAll({ auth }) {
     if (!auth.user.admin) {
-      response.status(401).send({ error: "Usuário sem acesso" })
+      return await _requisicao
+        .query()
+        .where({ "user_id": auth.user.id })
+        .orderBy("created_at", 'desc')
+        .with('veiculo')
+        .fetch()
     } else {
       return await _requisicao.query().with('veiculo').fetch()
     }
