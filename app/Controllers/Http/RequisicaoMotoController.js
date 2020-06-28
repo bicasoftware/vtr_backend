@@ -4,9 +4,44 @@ const _requisicao = use('App/Models/RequisicaoMoto')
 
 class RequisicaoMotoController {
   async create({ params, request, auth }) {
-    const data = request.all()
-    const newReq = await _requisicao.create({ ...data, user_id: auth.user.id, veiculo_id: params.veiculo_id })
+
+    const {
+      prefixo,
+      km,
+      limpeza,
+      circunstancia,
+      lado_direito,
+      lado_esquerdo,
+      dianteira,
+      trazeira,
+      superior,
+      interna,
+      pneus_dianteiro,
+      pneus_trazeiro,
+      combustivel
+    } = request.all()
+
+
+    const newReq = await _requisicao.create({
+      prefixo: prefixo,
+      km: km,
+      limpeza: limpeza,
+      circunstancia: circunstancia,
+      lado_direito: lado_direito,
+      lado_esquerdo: lado_esquerdo,
+      dianteira: dianteira,
+      trazeira: trazeira,
+      superior: superior,
+      interna: interna,
+      pneus_dianteiro: pneus_dianteiro,
+      pneus_trazeiro: pneus_trazeiro,
+      combustivel: combustivel,
+      user_id: auth.user.id,
+      veiculo_id: params.veiculo_id
+    })
+
     const { created_at, updated_at, id } = newReq
+    
     return {
       created_at: created_at,
       updated_at: updated_at,
