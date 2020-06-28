@@ -1,5 +1,7 @@
 'use strict'
 
+const LastInsertController = require('../app/Controllers/Http/LastInsertController')
+
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
@@ -34,3 +36,7 @@ Route.group(() => {
   Route.put('/finish/:id', 'RequisicaoMotoController.finish')
 
 }).prefix('requisicoes_moto').middleware(['auth'])
+
+Route.group(() => {
+  Route.get('', 'LastInsertController.listLastInsert')
+}).prefix('last_request').middleware(['auth'])
