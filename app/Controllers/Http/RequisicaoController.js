@@ -117,7 +117,7 @@ class RequisicaoController {
       .with('veiculo')
       .fetch()
 
-    return JSON.parse(JSON.stringify(r.first()))    
+    return JSON.parse(JSON.stringify(r.first()))
   }
 
   async listByUser({ auth }) {
@@ -165,16 +165,23 @@ class RequisicaoController {
 
   async filterByStatus({ auth, response, params }) {
     if (!auth.user.admin) {
-      response.status(401).send({ error: "Usuário sem permissão" })
+      const requisicoes = await _requisicao
+        .query()
+        .where({ status: params.status, user_id: auth.user.id })
+        .with('veiculo')
+        .fetch()
+
+      return requisicoes
+    } else {
+      const requisicoes = await _requisicao
+        .query()
+        .where({ status: params.status })
+        .with('veiculo')
+        .fetch()
+
+      return requisicoes
     }
 
-    const requisicoes = await _requisicao
-      .query()
-      .where({ status: params.status })
-      .with('veiculo')
-      .fetch()
-
-    return requisicoes
   }
 }
 
