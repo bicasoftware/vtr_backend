@@ -80,7 +80,7 @@ class RequisicaoMotoController {
 
   async updateStatus(id, admin, user_id, status) {
     let filter;
-    if (admin == 0) {
+    if (admin == true) {
       filter = { id: id }
     } else {
       filter = { id: id, user_id: user_id }
