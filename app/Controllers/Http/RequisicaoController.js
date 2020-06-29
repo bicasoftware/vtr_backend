@@ -111,11 +111,13 @@ class RequisicaoController {
   }
 
   async listOne({ params, auth }) {
-    return await _requisicao
+    const r = await _requisicao
       .query()
       .where({ user_id: auth.user.id, id: params.id })
       .with('veiculo')
       .fetch()
+
+    return JSON.parse(JSON.stringify(r.first()))    
   }
 
   async listByUser({ auth }) {
